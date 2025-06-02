@@ -1,17 +1,18 @@
-// index.js
 const express = require('express');
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
-// Middleware to parse JSON bodies
-app.use(express.json());
+app.use(express.json()); // cho phép đọc JSON từ request body
 
-//ruotes don gian
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+// ✅ Tạo route GET /api/users
+app.get('/api/users', (req, res) => {
+  res.json([
+    { id: 1, name: 'Alice', email: 'alice@gmail.com' },
+    { id: 2, name: 'Bob', email: 'bob@gmail.com' }
+  ]);
 });
 
-// khoi dong server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+// ✅ Chạy server tại cổng 3000
+app.listen(PORT, () => {
+  console.log(`✅ Server is running at http://localhost:${PORT}`);
 });
